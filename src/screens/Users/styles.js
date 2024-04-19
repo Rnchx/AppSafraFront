@@ -16,6 +16,12 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 20,
   },
+  user: {
+    padding: 10,
+    backgroundColor: "#C9D4FF",
+    borderRadius: 5,
+    marginBottom: 10,
+  },
 });
 
 export default styles;

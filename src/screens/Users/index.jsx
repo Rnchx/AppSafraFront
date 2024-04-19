@@ -8,12 +8,13 @@ import Title from "../../components/Title";
 export default function Users() {
   const [users, setUsers] = useState([]);
 
-  const apiURL = "https://jsonplaceholder.typicode.com/users";
+  const apiURL =
+    "https://969f-2804-868-d040-6cce-d27-101d-1f67-b338.ngrok-free.app/users";
 
   const fetchUsers = async () => {
     try {
       const response = await axios.get(apiURL);
-      setUsers(response.data);
+      setUsers(response.data.users);
     } catch (error) {
       console.error(error);
     }
