@@ -2,7 +2,7 @@ import { View } from "react-native";
 
 import styles from "./styles";
 import Title from "../../components/Title";
-import { user } from "../../data/Profile";
+import { product } from "../../data/Profile";
 import TouchButton from "../../components/TouchButton";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
     <View style={styles.container}>
       <Title title="Home" />
 
-      <TouchButton route="Profile" title="Go to Profile" data={user} />
+      <TouchButton route="Profile" title="Go to Profile" data={product} />
 
       <TouchButton route="Category" title="Go to Category" />
     </View>

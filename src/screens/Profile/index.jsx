@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
 import styles from "./styles";
 import Title from "../../components/Title";
@@ -15,13 +15,14 @@ export default function Profile({ route }) {
 
       <TouchButton route="Category" title="Go to Category" />
 
-      <View style={styles.user}>
-        <Title title="User" />
+      <View style={styles.product}>
+        <Title title="Product" />
+        <Image style={styles.logo} source={{ uri: data.photo }} />
+        <Text style={styles.text}>Link: {data.photo}</Text>
         <Text style={styles.text}>{data.name}</Text>
-        <Text style={styles.text}>{data.email}</Text>
-        <Text style={styles.text}>{data.phone}</Text>
-        <Text style={styles.text}>{data.address.city}</Text>
-        <Text style={styles.text}>{data.address.state}</Text>
+        <Text style={styles.text}>{data.description}</Text>
+        <Text style={styles.text}>{data.price}</Text>
+        <Text style={styles.text}>{data.validity}</Text>
       </View>
     </View>
   );

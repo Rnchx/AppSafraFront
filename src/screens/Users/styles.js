@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#C9D4FF",
     borderRadius: 5,
   },
-  users: {
+  products: {
     width: "100%",
     padding: 20,
   },
-  user: {
+  product: {
     padding: 10,
     backgroundColor: "#C9D4FF",
     borderRadius: 5,
