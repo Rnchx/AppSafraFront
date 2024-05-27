@@ -9,14 +9,14 @@ export default function Profile({ route }) {
 
   return (
     <View style={styles.container}>
-      <Title title="Profile" />
+      <Title title="detalhamento" />
 
       <TouchButton route="Home" title="Go to Home" />
 
       <TouchButton route="Category" title="Go to Category" />
 
       <View style={styles.product}>
-        <Title title="Product" />
+        <Title title="Products" />
         <Image style={styles.logo} source={{ uri: data.photo }} />
         <Text style={styles.text}>Link: {data.photo}</Text>
         <Text style={styles.text}>{data.name}</Text>

@@ -5,10 +5,10 @@ import Title from "../../components/Title";
 import TouchButton from "../../components/TouchButton";
 import { product } from "../../data/Profile";
 
-export default function Category() {
+export default function Carrinho() {
   return (
     <View style={styles.container}>
-      <Title title="Categoria" />
+      <Title title="Carrinho" />
 
       <TouchButton route="Category" title="Go to Category" />
 
