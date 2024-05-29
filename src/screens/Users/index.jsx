@@ -5,11 +5,12 @@ import axios from "axios";
 import styles from "./styles";
 import Title from "../../components/Title";
 
-export default function Products() {
+export default function Products({ route }) {
+  // const { data } = route.params;
+
   const [products, setProducts] = useState([]);
 
-  const apiURL =
-    "https://125a-201-63-78-210.ngrok-free.app/products";
+  const apiURL = "https://250f-201-63-78-210.ngrok-free.app/products"
 
   const fetchProducts = async () => {
     try {

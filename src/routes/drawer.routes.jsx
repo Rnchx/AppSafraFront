@@ -68,6 +68,7 @@ const DrawerRoutes = () => {
       <Drawer.Screen
         name="Products"
         component={Products}
+        initialParams={{ data: product }}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
