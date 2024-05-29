@@ -14,8 +14,11 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  const apiURL = "http://10.88.194.121:4000/products";
-  const apiUrl2 = "http://10.88.194.121:4000/categorys";
+  // const apiURL = "http://10.88.194.121:4000/products";
+  // const apiUrl2 = "http://10.88.194.121:4000/categorys";
+
+  const apiURL = "http://10.88.200.157:4000/products";
+  const apiUrl2 = "http://10.88.200.157:4000/categorys";
 
 
   const fetchProduct = async () => {
@@ -47,8 +50,8 @@ export default function Home() {
   return (
     <View style={styles.container}>
 
-        {categories ? (
-           <ScrollView horizontal>
+      {categories ? (
+        <ScrollView horizontal>
           <View style={styles.containerCategories}>
             {categories.map((categorie) => (
               <View key={categorie.id} style={styles.product}>
@@ -56,11 +59,11 @@ export default function Home() {
               </View>
             ))}
           </View>
-          </ScrollView>
-        ) : (
-          <Text style={styles.loading}>Carregando...</Text>
-        )
-        }
+        </ScrollView>
+      ) : (
+        <Text style={styles.loading}>Carregando...</Text>
+      )
+      }
 
       <Title title="Produtos" />
 

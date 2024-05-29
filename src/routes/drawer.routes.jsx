@@ -5,7 +5,6 @@ import Home from "../screens/Home";
 import ProductDetails from "../screens/Detalhamento";
 import Category from "../screens/Category";
 import ShopCart from "../screens/Carrinho";
-import Rehister from "../screens/Cadastro";
 import Register from "../screens/Cadastro";
 
 const Drawer = createDrawerNavigator();
@@ -66,7 +65,7 @@ const DrawerRoutes = () => {
       />
 
       <Drawer.Screen
-        name="Carrinho"
+        name="ShopCart"
         component={ShopCart}
         options={{
           drawerItemStyle: { display: "none" },
@@ -84,7 +83,7 @@ const DrawerRoutes = () => {
       />
 
       <Drawer.Screen
-        name="Cadastro"
+        name="Register"
         component={Register}
         options={{
           drawerBarIcon: ({ focused }) => (
@@ -94,6 +93,7 @@ const DrawerRoutes = () => {
               color={focused ? "#131313" : "#D6D6D6"}
             />
           ),
+          headerStyle: { backgroundColor: "#10377B" },
           drawerBarLabel: "Produtos",
           drawerBarActiveTintColor: "#131313",
           drawerBarInactiveTintColor: "#D6D6D6",
