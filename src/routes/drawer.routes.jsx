@@ -103,6 +103,11 @@ const DrawerRoutes = () => {
         name="Cadastro"
         component={Cadastro}
         options={{
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: "#103778"
+          },
+          headerTintColor: "white",
           tabBarIcon: ({ focused }) => (
             <Feather
               name="users"
@@ -110,7 +115,7 @@ const DrawerRoutes = () => {
               color={focused ? "#131313" : "#D6D6D6"}
             />
           ),
-          tabBarLabel: "Produtos",
+          tabBarLabel: "Cadastro",
           tabBarActiveTintColor: "#131313",
           tabBarInactiveTintColor: "#D6D6D6",
         }}
