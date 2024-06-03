@@ -69,8 +69,8 @@ export default function Home() {
             <View style={styles.containerCardCategory}>
               {
                 categories.map((category) => (
-                  <View style={styles.containerCardCategory2}>
-                    <Text></Text>
+                  <View key={category.id} style={styles.containerCardCategory2}>
+                    <Text>{category.name}</Text>
                   </View>
                 ))
               }
@@ -87,26 +87,26 @@ export default function Home() {
 
       <View style={styles.viewDestaques}>
         <Text style={styles.textPadaria}>Padaria</Text>
-        <ScrollView horizontal>
+        {/* <ScrollView horizontal> */}
 
-          {products ? (
-            <View style={styles.viewProductDestaques}>
-              {products.map((product) => (
-                <View key={product.id} style={styles.product}>
-                  <Image style={styles.productPhoto} source={{ uri: product.photo }} />
-                  <Text style={styles.productName}>{product.name}</Text>
-                  <Text style={styles.productPrice}>{product.price}</Text>
-                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
-                    <Text style={styles.textDetalhes}>Detalhes</Text>
-                  </TouchableOpacity>
-                </View>
-              ))}
-            </View>
-          ) : (
-            <Text style={styles.loading}>Carregando...</Text>
-          )}
+        {products ? (
+          <View style={styles.viewProductDestaques}>
+            {products.map((product) => (
+              <View key={product.id} style={styles.product}>
+                <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                <Text style={styles.productName}>{product.name}</Text>
+                <Text style={styles.productPrice}>{product.price}</Text>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                  <Text style={styles.textDetalhes}>Detalhes</Text>
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+        ) : (
+          <Text style={styles.loading}>Carregando...</Text>
+        )}
 
-        </ScrollView>
+        {/* </ScrollView> */}
       </View >
 
     </View >

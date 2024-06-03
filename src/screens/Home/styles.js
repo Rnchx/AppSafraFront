@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: "#E3EEFCE5",
     marginLeft: 10,
+    marginRight: 10,
     borderRadius: 20,
     padding: 10
   },
@@ -69,14 +70,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#E3EEFCE5",
+    gap: 8
   },
   product: {
     backgroundColor: "#103778",
     marginTop: 15,
     marginBottom: 5,
-    marginLeft: 5,
     borderRadius: 20,
-    width: 115,
+    width: 110,
     height: 170,
   },
   textCategory: {
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
   },
   productPhoto: {
     marginBottom: 5,
-    width: 115,
+    width: 110,
     height: 100,
     borderRadius: 20,
   },
