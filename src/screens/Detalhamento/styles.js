@@ -22,9 +22,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   logo: {
-    width: 300,
-    height: 300
+    width: 100,
+    height: 200,
+    marginTop: -300,
   }
+
+
 });
 
 export default styles;

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import styles from "./styles";
 import Title from "../../components/Title";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function ProductDetails({ route }) {
   const { id } = route.params;
@@ -31,19 +32,24 @@ export default function ProductDetails({ route }) {
   }, [id]);
 
   return (
+    <ScrollView>
     <View style={styles.container}>
-      <Title title="Produto" />
+     <Image style={styles.circuloAzul} source={require('../../../assets/Circulo_azul_detalhes.png')}></Image>
 
       {product ? (
+        
         <View style={styles.Containerproduct}>
           <View key={product.id} style={styles.product}>
+          <Image style={styles.logo} source={{ uri: product.photo }} />
             <Title title={product.name} />
-            <Image style={styles.logo} source={{ uri: product.photo }} />
+            <Title title={product.description}/>
+            <Text style={styles.preco}>R${product.price}</Text>
           </View>
         </View>
       ) : (
         <Text style={styles.loading}>Carregando...</Text>
       )}
     </View>
+    </ScrollView>
   );
 }
