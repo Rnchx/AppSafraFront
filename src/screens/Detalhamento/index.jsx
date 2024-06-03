@@ -32,13 +32,16 @@ export default function ProductDetails({ route }) {
 
   return (
     <View style={styles.container}>
-      <Title title="Produto" />
+      
 
       {product ? (
         <View style={styles.Containerproduct}>
           <View key={product.id} style={styles.product}>
+          <Image style={styles.logo} source={{ uri: product.photo }} />
             <Title title={product.name} />
-            <Image style={styles.logo} source={{ uri: product.photo }} />
+            <Title title={product.description}/>
+            <Text>R${product.price}</Text>
+           
           </View>
         </View>
       ) : (
