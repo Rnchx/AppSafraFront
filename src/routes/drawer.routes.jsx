@@ -86,6 +86,7 @@ const DrawerRoutes = () => {
         name="Register"
         component={Register}
         options={{
+          title: "",
           drawerBarIcon: ({ focused }) => (
             <Feather
               name="user"
