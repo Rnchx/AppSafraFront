@@ -10,6 +10,8 @@ import TouchButton from "../../components/TouchButton";
 export default function ProductDetails({ route }) {
   const { id } = route.params;
   const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const apiURL = `http://10.88.200.157:4000/products/${id}`;
@@ -28,11 +30,37 @@ export default function ProductDetails({ route }) {
     }
   };
 
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(apiURL2);
+      setProducts(response.data.products);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchCategorie = async () => {
+    try {
+      const response = await axios.get(apiURL2);
+      setCategories(response.data.categorys);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     setProduct(null);
     setLoading(true);
     fetchProduct();
   }, [id]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    fetchCategorie();
+  }, []);
 
   return (
     <ScrollView>
@@ -48,15 +76,30 @@ export default function ProductDetails({ route }) {
             <Text style={styles.texto}>{product.name + "- " + product.description}</Text>
             <Text style={styles.preco}>R$ {product.price}</Text>
             <TouchableOpacity style={styles.botao}><Text style={styles.textoBotao}>+ Adicione ao carrinho</Text></TouchableOpacity>
-
-            <View style={styles.cards}>
-
-            </View>
           </View>
         </View>
       ) : (
         <Text style={styles.loading}>Carregando...</Text>
       )}
+      
+      <View style={styles.containerCards}>
+              <TouchableOpacity><Text style={styles.navegacaoCard}>Mais Produtos...</Text></TouchableOpacity>
+
+          
+        {products ? (
+          <View style={styles.cards}>
+            {products.map((product) => (
+              <View key={product.id} style={styles.product}>
+                <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                <Text style={styles.productName}>{product.name}</Text>
+                <Text style={styles.productPrice}>{product.price}</Text>
+              </View>
+            ))}
+          </View>
+        ) : (
+          <Text style={styles.loading}>Carregando...</Text>
+        )}
+            </View>
     </View>
     </ScrollView>
   );
