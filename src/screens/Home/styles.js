@@ -35,13 +35,29 @@ const styles = StyleSheet.create({
     height: 25,
     fontSize: 14,
   },
+  containerCardCategory: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
   containerCardCategory2: {
     backgroundColor: "#E3EEFCE5",
-    height: 110,
-    width: 110,
+    height: 90,
+    width: 90,
     borderRadius: 20,
     marginLeft: 10,
-    marginRight: 10,
+  },
+  viewCategory: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10
+  },
+  iconCategory: {
+  },
+  nameCategory: {
+    textAlign: "center",
+    margin: 5,
   },
   viewTextDestaques: {
     marginTop: 20
@@ -78,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 20,
     width: 110,
-    height: 170,
+    height: 180,
   },
   textCategory: {
     fontWeight: "bold",

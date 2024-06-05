@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
+import { Text, View, Image, TouchableOpacity, ScrollView, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import axios from "axios";
 
 import styles from "./styles";
-import { TextInput } from "react-native-gesture-handler";
-
 import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Home() {
 
@@ -22,6 +22,22 @@ export default function Home() {
   // const apiURL = "http://10.88.200.157:4000/products";
   // const apiUrl2 = "http://10.88.200.157:4000/categorys";
 
+  const getIcon = (categoryName) => {
+    switch (categoryName) {
+      case 'Padaria':
+        return <MaterialCommunityIcons name="cupcake" size={40} color="#103778" />;
+      case 'Açougue':
+        return <MaterialCommunityIcons name="knife" size={40} color="#103778" />
+      case 'Horti-fruit':
+        return <FontAwesome name="leaf" size={40} color="#103778" />;
+      case 'Bebidas':
+        return <FontAwesome name="glass" size={40} color="#103778" />;
+      case 'Limpeza':
+        return <FontAwesome name="trash" size={40} color="#103778" />;
+      default:
+        return null;
+    }
+  };
 
   const fetchProduct = async () => {
     try {
@@ -65,12 +81,17 @@ export default function Home() {
 
       <View style={styles.containerCategorys}>
         <ScrollView horizontal>
-          {categories ? (
+          { categories ? (
             <View style={styles.containerCardCategory}>
               {
                 categories.map((category) => (
                   <View key={category.id} style={styles.containerCardCategory2}>
-                    <Text>{category.name}</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("CategoryProducts", { id: category.id })}>
+                      <View style={styles.viewCategory}>
+                        {getIcon(category.name)}
+                        <Text style={styles.nameCategory}>{category.name}</Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                 ))
               }

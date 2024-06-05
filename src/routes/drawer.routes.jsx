@@ -3,7 +3,7 @@ import { Feather } from "@expo/vector-icons";
 
 import Home from "../screens/Home";
 import ProductDetails from "../screens/Detalhamento";
-import Category from "../screens/Category";
+import CategoryProducts from "../screens/Category";
 import ShopCart from "../screens/Carrinho";
 import Register from "../screens/Cadastro";
 
@@ -47,8 +47,8 @@ const DrawerRoutes = () => {
         }}
       />
       <Drawer.Screen
-        name="Category"
-        component={Category}
+        name="CategoryProducts"
+        component={CategoryProducts}
         options={{
           headerTitle: "",
           drawerIcon: ({ focused }) => (

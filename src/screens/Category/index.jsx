@@ -1,17 +1,50 @@
-import { View } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
+import { useEffect, useState } from "react";
+
+import axios from "axios";
 
 import styles from "./styles";
-import Title from "../../components/Title";
-import TouchButton from "../../components/TouchButton";
 
-export default function Category() {
+export default function CategoryProducts({ route }) {
+  const { id } = route.params;
+
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const apiURL2 = `http://10.88.194.76:4000/categorys/${id}`;
+
+  const fetchCategorie = async () => {
+    try {
+      const response = await axios.get(apiURL2);
+      setCategories(response.data.category);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    setCategories(null);
+    setLoading(true);
+    fetchCategorie();
+  }, [id]);
+
   return (
     <View style={styles.container}>
-      <Title title="Categoria" />
+      
+      <View style={styles.containerCategorys}>
+          { categories ? (
+            <View style={styles.containerCardCategory}>
+                  <View key={categories.id} style={styles.containerCardCategory2}>
+                        <Text style={styles.nameCategory}>{categories.name}</Text>
+                  </View>
+            </View>
+          ) : (
+            <Text style={styles.loading}>Carregando Setor</Text>
+          )}
+      </View>
 
-      <TouchButton route="Category" title="Go to Category" />
-
-      <TouchButton route="Profile" title="Go to Profile" />
     </View>
   );
 }
