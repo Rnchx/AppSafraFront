@@ -11,7 +11,8 @@ export default function CategoryProducts({ route }) {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const apiURL2 = `http://10.88.194.76:4000/categorys/${id}`;
+  // const apiURL2 = `http://10.88.194.76:4000/categorys/${id}`;
+  const apiURL2 = `http://10.88.200.157:4000/categorys/${id}`;
 
   const fetchCategorie = async () => {
     try {
@@ -32,17 +33,17 @@ export default function CategoryProducts({ route }) {
 
   return (
     <View style={styles.container}>
-      
+
       <View style={styles.containerCategorys}>
-          { categories ? (
-            <View style={styles.containerCardCategory}>
-                  <View key={categories.id} style={styles.containerCardCategory2}>
-                        <Text style={styles.nameCategory}>{categories.name}</Text>
-                  </View>
+        {categories ? (
+          <View style={styles.containerCardCategory}>
+            <View key={categories.id} style={styles.containerCardCategory2}>
+              <Text style={styles.nameCategory}>{categories.name}</Text>
             </View>
-          ) : (
-            <Text style={styles.loading}>Carregando Setor</Text>
-          )}
+          </View>
+        ) : (
+          <Text style={styles.loading}>Carregando Setor</Text>
+        )}
       </View>
 
     </View>

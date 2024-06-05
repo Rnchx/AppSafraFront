@@ -16,11 +16,11 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  const apiURL = "http://10.88.194.76:4000/products";
-  const apiUrl2 = "http://10.88.194.76:4000/categorys";
+  // const apiURL = "http://10.88.194.76:4000/products";
+  // const apiUrl2 = "http://10.88.194.76:4000/categorys";
 
-  // const apiURL = "http://10.88.200.157:4000/products";
-  // const apiUrl2 = "http://10.88.200.157:4000/categorys";
+  const apiURL = "http://10.88.200.157:4000/products";
+  const apiUrl2 = "http://10.88.200.157:4000/categorys";
 
   const getIcon = (categoryName) => {
     switch (categoryName) {
@@ -81,7 +81,7 @@ export default function Home() {
 
       <View style={styles.containerCategorys}>
         <ScrollView horizontal>
-          { categories ? (
+          {categories ? (
             <View style={styles.containerCardCategory}>
               {
                 categories.map((category) => (
