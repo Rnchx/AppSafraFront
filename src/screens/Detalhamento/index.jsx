@@ -1,10 +1,11 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 import styles from "./styles";
 import Title from "../../components/Title";
 import { ScrollView } from "react-native-gesture-handler";
+import TouchButton from "../../components/TouchButton";
 
 export default function ProductDetails({ route }) {
   const { id } = route.params;
@@ -13,6 +14,7 @@ export default function ProductDetails({ route }) {
 
   // const apiURL = `http://10.88.200.157:4000/products/${id}`;
   const apiURL = `http://10.88.194.76:4000/products/${id}`;
+  const apiURL2 = `http://10.88.194.76:4000/products`;
 
   const fetchProduct = async () => {
     try {
@@ -41,9 +43,14 @@ export default function ProductDetails({ route }) {
         <View style={styles.Containerproduct}>
           <View key={product.id} style={styles.product}>
           <Image style={styles.logo} source={{ uri: product.photo }} />
-            <Title title={product.name} />
-            <Title title={product.description}/>
-            <Text style={styles.preco}>R${product.price}</Text>
+            {/* <Text style={styles.texto}>{product.name}</Text> */}
+            <Text style={styles.texto}>{product.name + "- " + product.description}</Text>
+            <Text style={styles.preco}>R$ {product.price}</Text>
+            <TouchableOpacity style={styles.botao}><Text style={styles.textoBotao}>+ Adicione ao carrinho</Text></TouchableOpacity>
+
+            <View style={styles.cards}>
+
+            </View>
           </View>
         </View>
       ) : (
