@@ -15,6 +15,7 @@ export default function Home() {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [filterCategories, setFilterCategories] = useState([]);
 
   // const apiURL = "http://10.88.194.76:4000/products";
   // const apiUrl2 = "http://10.88.194.76:4000/categorys";
@@ -22,13 +23,15 @@ export default function Home() {
   const apiURL = "http://10.88.200.157:4000/products";
   const apiUrl2 = "http://10.88.200.157:4000/categorys";
 
+  // const apiURLFilterCategory = `http://10.88.200.157:4000/categorys/name/${}`
+
   const getIcon = (categoryName) => {
     switch (categoryName) {
       case 'Padaria':
         return <MaterialCommunityIcons name="cupcake" size={40} color="#103778" />;
       case 'Açougue':
         return <MaterialCommunityIcons name="knife" size={40} color="#103778" />
-      case 'Horti-fruit':
+      case 'Horti-Fruit':
         return <FontAwesome name="leaf" size={40} color="#103778" />;
       case 'Bebidas':
         return <FontAwesome name="glass" size={40} color="#103778" />;
@@ -57,6 +60,15 @@ export default function Home() {
     }
   };
 
+  // const fetchCategoryFilter = async () => {
+  //   try {
+  //     const response = await axios.get(apiURLFilterCategory);
+  //     setProducts(response.data.categorys);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   useEffect(() => {
     fetchProduct();
   }, []);
@@ -64,6 +76,10 @@ export default function Home() {
   useEffect(() => {
     fetchCategorie();
   }, []);
+
+  // useEffect(() => {
+  //   fetchCategoryFilter();
+  // }, []);
 
   return (
     <View style={styles.container}>
