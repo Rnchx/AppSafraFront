@@ -12,9 +12,10 @@ export default function ProductDetails({ route }) {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // const apiURL = `http://10.88.200.157:4000/products/${id}`;
-  const apiURL = `http://10.88.194.76:4000/products/${id}`;
-  const apiURL2 = `http://10.88.194.76:4000/products`;
+  const apiURL = `http://10.88.200.157:4000/products/${id}`;
+  const apiURL2 = `http://10.88.200.157:4000/products`;
+  // const apiURL = `http://10.88.194.76:4000/products/${id}`;
+  // const apiURL2 = `http://10.88.194.76:4000/products`;
 
   const fetchProduct = async () => {
     try {
