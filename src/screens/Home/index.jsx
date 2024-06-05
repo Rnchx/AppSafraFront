@@ -15,7 +15,8 @@ export default function Home() {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [filterCategories, setFilterCategories] = useState([]);
+  const [filterPadaria, setFilterPadaria] = useState([]);
+  const [filterLimpeza, setFilterLimpeza] = useState([]);
 
   // const apiURL = "http://10.88.194.76:4000/products";
   // const apiUrl2 = "http://10.88.194.76:4000/categorys";
@@ -23,7 +24,8 @@ export default function Home() {
   const apiURL = "http://10.88.200.157:4000/products";
   const apiUrl2 = "http://10.88.200.157:4000/categorys";
 
-  // const apiURLFilterCategory = `http://10.88.200.157:4000/categorys/name/${}`
+  const apiURLPadaria = `http://10.88.200.157:4000/categorys/filter/Padaria`
+  const apiURLLimpeza = `http://10.88.200.157:4000/categorys/filter/Limpeza`
 
   const getIcon = (categoryName) => {
     switch (categoryName) {
@@ -60,14 +62,25 @@ export default function Home() {
     }
   };
 
-  // const fetchCategoryFilter = async () => {
-  //   try {
-  //     const response = await axios.get(apiURLFilterCategory);
-  //     setProducts(response.data.categorys);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const fetchPadariaFilter = async () => {
+    try {
+      const response = await axios.get(apiURLPadaria);
+      setFilterPadaria(response.data.category);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchLimpezaFilter = async () => {
+    try {
+      const response = await axios.get(apiURLLimpeza);
+      setFilterLimpeza(response.data.category);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
 
   useEffect(() => {
     fetchProduct();
@@ -77,9 +90,13 @@ export default function Home() {
     fetchCategorie();
   }, []);
 
-  // useEffect(() => {
-  //   fetchCategoryFilter();
-  // }, []);
+  useEffect(() => {
+    fetchPadariaFilter();
+  }, []);
+
+  useEffect(() => {
+    fetchLimpezaFilter();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -118,33 +135,87 @@ export default function Home() {
         </ScrollView>
       </View>
 
-      <View style={styles.viewTextDestaques}>
-        <Text style={styles.textDestaques}>Destaques</Text>
-      </View>
 
-      <View style={styles.viewDestaques}>
-        <Text style={styles.textPadaria}>Padaria</Text>
-        {/* <ScrollView horizontal> */}
+      <ScrollView>
+        <View style={styles.viewTextDestaques}>
+          <Text style={styles.textDestaques}>Destaques</Text>
+        </View>
 
-        {products ? (
-          <View style={styles.viewProductDestaques}>
-            {products.map((product) => (
-              <View key={product.id} style={styles.product}>
-                <Image style={styles.productPhoto} source={{ uri: product.photo }} />
-                <Text style={styles.productName}>{product.name}</Text>
-                <Text style={styles.productPrice}>{product.price}</Text>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
-                  <Text style={styles.textDetalhes}>Detalhes</Text>
-                </TouchableOpacity>
+        <View style={styles.viewDestaques}>
+          <Text style={styles.textPadaria}>Padaria</Text>
+          <ScrollView horizontal>
+
+            {filterPadaria ? (
+              <View style={styles.viewProductDestaques}>
+                {filterPadaria.map((product) => (
+                  <View key={product.id} style={styles.product}>
+                    <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productPrice}>{product.price}</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                      <Text style={styles.textDetalhes}>Detalhes</Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
               </View>
-            ))}
-          </View>
-        ) : (
-          <Text style={styles.loading}>Carregando...</Text>
-        )}
 
-        {/* </ScrollView> */}
-      </View >
+            ) : (
+              <Text style={styles.loading}>Carregando...</Text>
+            )}
+
+          </ScrollView>
+        </View >
+
+        <View style={styles.viewDestaques}>
+          <Text style={styles.textPadaria}>Limpeza</Text>
+          <ScrollView horizontal>
+
+            {filterLimpeza ? (
+              <View style={styles.viewProductDestaques}>
+                {filterLimpeza.map((product) => (
+                  <View key={product.id} style={styles.product}>
+                    <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productPrice}>{product.price}</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                      <Text style={styles.textDetalhes}>Detalhes</Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
+              </View>
+
+            ) : (
+              <Text style={styles.loading}>Carregando...</Text>
+            )}
+
+          </ScrollView>
+        </View >
+
+        <View style={styles.viewDestaques}>
+          <Text style={styles.textPadaria}>Açougue</Text>
+          <ScrollView horizontal>
+
+            {filterLimpeza ? (
+              <View style={styles.viewProductDestaques}>
+                {filterLimpeza.map((product) => (
+                  <View key={product.id} style={styles.product}>
+                    <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productPrice}>{product.price}</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                      <Text style={styles.textDetalhes}>Detalhes</Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
+              </View>
+
+            ) : (
+              <Text style={styles.loading}>Carregando...</Text>
+            )}
+
+          </ScrollView>
+        </View >
+      </ScrollView>
 
     </View >
 
