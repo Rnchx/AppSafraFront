@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   logo: {
-    width: 150,
+    minWidth: 200,
     height: 200,
     marginTop: -250,
     borderRadius: 10,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#F58614",
     fontWeight: "bold",
-    marginRight:270,
+    marginRight:280,
   },
   product: {
     justifyContent: "center",
@@ -56,6 +56,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 35,
     fontWeight: "bold",
+  },
+  containerCards: {
+    backgroundColor: "#E3EEFC",
+    marginTop: 20,
+    width:410,
+
+  },
+  navegacaoCard: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "#103778",
+    marginTop: 10
+  },
+  containerCards: {
+      
   },
 
 
