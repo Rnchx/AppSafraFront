@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FFF",
   },
   viewSearchLogo: {
     display: "flex",
@@ -25,10 +26,9 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   containerCategorys: {
-    marginTop: 20,
   },
   viewTextDestaques: {
-    marginTop: 20,
+    marginTop: 30,
   },
   inputSearch: {
     width: 200,
@@ -46,14 +46,13 @@ const styles = StyleSheet.create({
     width: 90,
     borderRadius: 20,
     marginLeft: 10,
+    marginRight: 10,
   },
   viewCategory: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     marginTop: 10
-  },
-  iconCategory: {
   },
   nameCategory: {
     textAlign: "center",
