@@ -1,45 +1,68 @@
-import escolas  from "../data/eescolas";
+import axios from 'axios';
 import Product from "./Product";
 
-class listProduct {
+class productRepository {
   constructor() {
-    this.productArray = [];
+    this.products = [];
   }
 
-  add(listProduct) {
-    this.productArray.push(listProduct)
+  saveToDatabase(product) {
+    // Adicione uma verificação para garantir que todos os campos obrigatórios estejam presentes
+  
+    axios.post('http://10.88.194.76:4000/products', product)
+     .then(response => {
+        console.log('Produto salvo com sucesso:', response.data);
+        this.products.push(product); // Atualize o estado local com o produto salvo
+      })
+     .catch(error => {
+        console.error('Erro ao salvar produto:', error);
+      });
   }
 
-  getListaProdutos() {
-    return this.productArray;
+  updateInDatabase( name, price, type, validity, description, photo, idCategory) {
+    axios.put(`http://10.88.194.76:4000/products/${id}`, {
+      name,
+      price,
+      type,
+      validity,
+      description,
+      photo,
+      idCategory
+    })
+   .then(response => {
+      console.log('Produto atualizado com sucesso:', response.data);
+      const index = this.products.findIndex(p => p.id === id);
+      if (index > -1) {
+        this.products[index].name = name;
+        this.products[index].price = price;
+        this.products[index].type = type;
+        this.products[index].validity = validity;
+        this.products[index].description = description;
+        this.products[index].photo = photo;
+        this.products[index].idCategory = idCategory;
+      }
+    })
+   .catch(error => {
+      console.error('Erro ao atualizar produto:', error);
+    });
   }
 
-  deleteProdutos(id) {
-    this.productArray = this.productArray.filter((produto) => produto.id !== id);
-  }
-  getProdutosPorId(id) {
-    return this.productArray.find((listProduct) => listProduct.id === id)
+  getAll() {
+    return this.products;
   }
 
-  atualizarProdutos(id, name, price, description, type, validity, photo) {
-    const produto = this.getProdutosPorId(id);
+  get(id) {
+    return this.products.find((product) => product.id === id);
+  }
 
-    if (produto) {
-        produto.name = name;
-        produto.price = price ;
-        produto.description = description;
-        produto.type = type;
-        produto.validity = validity;
-        produto.photo = photo;
-    }
-
-    return produto;
+  remove(id) {
+    this.products = this.products.filter((product) => product.id !== id);
   }
 }
 
-const productRepository = new listProduct();
-const newProduct = new Product(escolas.name, escolas.price,  escolas.description, escolas.type, escolas.validity, escolas.photo);
+const ProductRepository = new productRepository();
+const newProduct = new Product(Product.name, Product.price, Product.type, Product.validity, Product.description, Product.photo, Product.idCategory) ;
 
-productRepository.add(newProduct);
+ProductRepository.saveToDatabase(newProduct);
 
-export default productRepository;
+export default ProductRepository;

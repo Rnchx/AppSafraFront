@@ -1,13 +1,17 @@
 import React from 'react';
-import styles from './pop.up.module.css';
+import { View, Text, StyleSheet } from 'react-native';
 
-const Popup = ({icon1, message, icon2, type}) => { 
-    var color = (type === 'success') ? styles.success : styles.error;
-    var mainDiv = styles.mainDiv + ' ' + color;
+const Popup = ({ icon1, message, icon2, type }) => {
+  const colorStyle = type === 'success'? styles.success : styles.error;
+
   return (
-    <div className={mainDiv}>
-      <p>{icon1}<span id={styles.message}>{message}</span>{icon2}</p>
-    </div>
+    <View style={[styles.mainDiv, colorStyle]}>
+      <Text style={styles.iconContainer}>
+        {icon1}
+        <Text style={styles.message}>{message}</Text>
+        {icon2}
+      </Text>
+    </View>
   );
 };
 
