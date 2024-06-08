@@ -8,6 +8,7 @@ import styles from "./styles";
 import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function Home() {
 
@@ -16,16 +17,27 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filterPadaria, setFilterPadaria] = useState([]);
+  const [filterAcougue, setFilterAcougue] = useState([]);
+  const [filterHortiFruit, setFilterHortiFruit] = useState([]);
+  const [filterBebidas, setFilterBebidas] = useState([]);
   const [filterLimpeza, setFilterLimpeza] = useState([]);
 
   // const apiURL = "http://10.88.194.76:4000/products";
   // const apiUrl2 = "http://10.88.194.76:4000/categorys";
 
-  const apiURL = "http://10.88.200.157:4000/products";
-  const apiUrl2 = "http://10.88.200.157:4000/categorys";
+  // const apiURL = "http://10.88.200.157:4000/products";
+  // const apiUrl2 = "http://10.88.200.157:4000/categorys";
 
-  const apiURLPadaria = `http://10.88.200.157:4000/categorys/filter/Padaria`
-  const apiURLLimpeza = `http://10.88.200.157:4000/categorys/filter/Limpeza`
+  // const apiURLPadaria = `http://10.88.200.157:4000/categorys/filter/Padaria`
+  // const apiURLLimpeza = `http://10.88.200.157:4000/categorys/filter/Limpeza`
+
+  const apiURL = "http://192.168.15.111:4000/products";
+  const apiUrl2 = "http://192.168.15.111:4000/categorys"
+  const apiURLPadaria = "http://192.168.15.111:4000/categorys/filter/Padaria"
+  const apiURLAcougue = "http://192.168.15.111:4000/categorys/filter/Açougue"
+  const apiURLHortiFruit = "http://192.168.15.111:4000/categorys/filter/Horti-Fruit"
+  const apiURLBebidas = "http://192.168.15.111:4000/categorys/filter/Bebidas"
+  const apiURLLimpeza = "http://192.168.15.111:4000/categorys/filter/Limpeza"
 
   const getIcon = (categoryName) => {
     switch (categoryName) {
@@ -38,7 +50,7 @@ export default function Home() {
       case 'Bebidas':
         return <FontAwesome name="glass" size={40} color="#103778" />;
       case 'Limpeza':
-        return <FontAwesome name="trash" size={40} color="#103778" />;
+        return <MaterialIcons name="cleaning-services" size={40} color="#103778" />
       default:
         return null;
     }
@@ -65,7 +77,34 @@ export default function Home() {
   const fetchPadariaFilter = async () => {
     try {
       const response = await axios.get(apiURLPadaria);
-      setFilterPadaria(response.data.category);
+      setFilterPadaria(response.data.products);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchAcougueFilter = async () => {
+    try {
+      const response = await axios.get(apiURLAcougue);
+      setFilterAcougue(response.data.products);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchHortiFruitFilter = async () => {
+    try {
+      const response = await axios.get(apiURLHortiFruit);
+      setFilterHortiFruit(response.data.products);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchBebidasFilter = async () => {
+    try {
+      const response = await axios.get(apiURLBebidas);
+      setFilterBebidas(response.data.products);
     } catch (error) {
       console.error(error);
     }
@@ -74,7 +113,7 @@ export default function Home() {
   const fetchLimpezaFilter = async () => {
     try {
       const response = await axios.get(apiURLLimpeza);
-      setFilterLimpeza(response.data.category);
+      setFilterLimpeza(response.data.products);
     } catch (error) {
       console.error(error);
     }
@@ -95,6 +134,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    fetchAcougueFilter();
+  }, []);
+
+  useEffect(() => {
+    fetchHortiFruitFilter();
+  }, []);
+
+  useEffect(() => {
+    fetchBebidasFilter();
+  }, []);
+
+  useEffect(() => {
     fetchLimpezaFilter();
   }, []);
 
@@ -108,7 +159,9 @@ export default function Home() {
         </View>
 
         <View style={styles.viewLogo}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Home")}>
           <Image style={styles.logo} source={require("../../../assets/logo.png")} />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -136,84 +189,118 @@ export default function Home() {
       </View>
 
 
-      <ScrollView>
+      <ScrollView style={styles.containerProductsDestaques}>
         <View style={styles.viewTextDestaques}>
           <Text style={styles.textDestaques}>Destaques</Text>
         </View>
 
         <View style={styles.viewDestaques}>
           <Text style={styles.textPadaria}>Padaria</Text>
-          <ScrollView horizontal>
 
-            {filterPadaria ? (
-              <View style={styles.viewProductDestaques}>
-                {filterPadaria.map((product) => (
-                  <View key={product.id} style={styles.product}>
+          {filterPadaria ? (
+            <View style={styles.viewProductDestaques}>
+              {filterPadaria.slice(0, 3).map((product) => (
+                <View key={product.id} style={styles.product}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>
                     <Text style={styles.productPrice}>{product.price}</Text>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
-                      <Text style={styles.textDetalhes}>Detalhes</Text>
-                    </TouchableOpacity>
-                  </View>
-                ))}
-              </View>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
 
-            ) : (
-              <Text style={styles.loading}>Carregando...</Text>
-            )}
+          ) : (
+            <Text style={styles.loading}>Carregando...</Text>
+          )}
 
-          </ScrollView>
-        </View >
-
-        <View style={styles.viewDestaques}>
-          <Text style={styles.textPadaria}>Limpeza</Text>
-          <ScrollView horizontal>
-
-            {filterLimpeza ? (
-              <View style={styles.viewProductDestaques}>
-                {filterLimpeza.map((product) => (
-                  <View key={product.id} style={styles.product}>
-                    <Image style={styles.productPhoto} source={{ uri: product.photo }} />
-                    <Text style={styles.productName}>{product.name}</Text>
-                    <Text style={styles.productPrice}>{product.price}</Text>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
-                      <Text style={styles.textDetalhes}>Detalhes</Text>
-                    </TouchableOpacity>
-                  </View>
-                ))}
-              </View>
-
-            ) : (
-              <Text style={styles.loading}>Carregando...</Text>
-            )}
-
-          </ScrollView>
         </View >
 
         <View style={styles.viewDestaques}>
           <Text style={styles.textPadaria}>Açougue</Text>
-          <ScrollView horizontal>
 
-            {filterLimpeza ? (
-              <View style={styles.viewProductDestaques}>
-                {filterLimpeza.map((product) => (
-                  <View key={product.id} style={styles.product}>
+          {filterAcougue ? (
+            <View style={styles.viewProductDestaques}>
+              {filterAcougue.slice(0, 3).map((product) => (
+                <View key={product.id} style={styles.product}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>
                     <Text style={styles.productPrice}>{product.price}</Text>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
-                      <Text style={styles.textDetalhes}>Detalhes</Text>
-                    </TouchableOpacity>
-                  </View>
-                ))}
-              </View>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
 
-            ) : (
-              <Text style={styles.loading}>Carregando...</Text>
-            )}
+          ) : (
+            <Text style={styles.loading}>Carregando...</Text>
+          )}
 
-          </ScrollView>
+        </View >
+
+        <View style={styles.viewDestaques}>
+          <Text style={styles.textPadaria}>Horti-Fruit</Text>
+
+          {filterHortiFruit ? (
+            <View style={styles.viewProductDestaques}>
+              {filterHortiFruit.slice(0, 3).map((product) => (
+                <View key={product.id} style={styles.product}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                    <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productPrice}>{product.price}</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+
+          ) : (
+            <Text style={styles.loading}>Carregando...</Text>
+          )}
+
+        </View >
+
+        <View style={styles.viewDestaques}>
+          <Text style={styles.textPadaria}>Bebidas</Text>
+
+          {filterBebidas ? (
+            <View style={styles.viewProductDestaques}>
+              {filterBebidas.slice(0, 3).map((product) => (
+                <View key={product.id} style={styles.product}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                    <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productPrice}>{product.price}</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+
+          ) : (
+            <Text style={styles.loading}>Carregando...</Text>
+          )}
+
+        </View >
+
+        <View style={styles.viewDestaques}>
+          <Text style={styles.textPadaria}>Limpeza</Text>
+
+          {filterLimpeza ? (
+            <View style={styles.viewProductDestaques}>
+              {filterLimpeza.slice(0, 3).map((product) => (
+                <View key={product.id} style={styles.product}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                    <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productPrice}>{product.price}</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+
+          ) : (
+            <Text style={styles.loading}>Carregando...</Text>
+          )}
         </View >
       </ScrollView>
 

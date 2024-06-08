@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import Popup from "../../components/popUp/PopUp"
+// import Popup from "../../components/popUp/PopUp"
 
 import Product from "../../models/Product";
 import productRepository from "../../models/listProducts";
@@ -39,8 +39,11 @@ export default function Register({ route }) {
   const [categorys, setCategories] = useState([]);
   const [deuBom, setDeuBom] = useState(false);
 
-  const apiURL = "http://10.88.200.157:4000/products";
-  const apiUrl2 = "http://10.88.200.157:4000/categorys";
+  const apiURL = "http://http://192.168.15.111:4000/products";
+  const apiUrl2 = "http://http://192.168.15.111:4000/categorys";
+
+  // const apiURL = "http://10.88.200.157:4000/products";
+  // const apiUrl2 = "http://10.88.200.157:4000/categorys";
 
 
   const fetchProduct = async () => {

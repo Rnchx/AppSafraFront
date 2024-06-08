@@ -1,5 +1,6 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Feather } from "@expo/vector-icons";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import Home from "../screens/Home";
 import ProductDetails from "../screens/Detalhamento";
@@ -21,12 +22,13 @@ const DrawerRoutes = () => {
             <Feather
               name="home"
               size={24}
-              color={focused ? "#131313" : "#D6D6D6"}
+              color={focused ? "#103778" : "gray"}
             />
           ),
-          drawerLabel: "Inicial",
-          drawerActiveTintColor: "#131313",
-          drawerInactiveTintColor: "#D6D6D6",
+          headerStyle: { backgroundColor: "#10377B" },
+          drawerLabel: "Início",
+          drawerActiveTintColor: "#103778",
+          drawerInactiveTintColor: "gray",
         }}
       />
       <Drawer.Screen
@@ -34,6 +36,7 @@ const DrawerRoutes = () => {
         component={ProductDetails}
         options={{
           drawerItemStyle: { display: "none" },
+          headerTitle: "",
           drawerBarIcon: ({ focused }) => (
             <Feather
               name="user"
@@ -50,6 +53,7 @@ const DrawerRoutes = () => {
         name="CategoryProducts"
         component={CategoryProducts}
         options={{
+          drawerItemStyle: { display: "none" },
           headerTitle: "",
           drawerIcon: ({ focused }) => (
             <Feather
@@ -58,6 +62,7 @@ const DrawerRoutes = () => {
               color={focused ? "#131313" : "#D6D6D6"}
             />
           ),
+          headerStyle: { backgroundColor: "#10377B" },
           drawerLabel: "Categorias",
           drawerActiveTintColor: "#131313",
           drawerInactiveTintColor: "#D6D6D6",
@@ -76,6 +81,7 @@ const DrawerRoutes = () => {
               color={focused ? "#131313" : "#D6D6D6"}
             />
           ),
+          headerStyle: { backgroundColor: "#10377B" },
           drawerBarLabel: "Produtos",
           drawerBarActiveTintColor: "#131313",
           drawerBarInactiveTintColor: "#D6D6D6",
@@ -86,18 +92,14 @@ const DrawerRoutes = () => {
         name="Register"
         component={Register}
         options={{
-          title: "",
-          drawerBarIcon: ({ focused }) => (
-            <Feather
-              name="user"
-              size={24}
-              color={focused ? "#131313" : "#D6D6D6"}
-            />
+          headerTitle: "",
+          drawerIcon: ({ focused }) => (
+            <FontAwesome5 name="newspaper" size={24} color={focused ? "#103778" : "gray"} />
           ),
           headerStyle: { backgroundColor: "#10377B" },
-          drawerBarLabel: "Produtos",
-          drawerBarActiveTintColor: "#131313",
-          drawerBarInactiveTintColor: "#D6D6D6",
+          drawerLabel: "Cadastro de Produtos",
+          drawerBarActiveTintColor: "#103778",
+          drawerBarInactiveTintColor: "gray",
         }}
       />
 

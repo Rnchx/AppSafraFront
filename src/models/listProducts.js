@@ -6,7 +6,8 @@ class productRepository {
   }
 
   saveToDatabase(product) {
-    fetch('http://10.88.200.157:4000/products', {
+    // fetch('http://10.88.200.157:4000/products', {
+      fetch('http://192.168.15.111:4000/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -14,7 +15,7 @@ class productRepository {
       body: JSON.stringify(product)
     })
       .then(response => {
-        console.log('Status Code:', response.status); // Imprime o código de status HTTP
+        console.log('Status Code:', response.status);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -31,12 +32,13 @@ class productRepository {
 
 
   updateInDatabase(name, price, type, validity, description, photo, idCategory) {
-    const url = `http://10.88.200.157:4000/products/${id}`; // Certifique-se de que 'id' está definido corretamente aqui
+    // const url = `http://10.88.200.157:4000/products/${id}`;
+    const url = `http://192.168.15.111:4000/products/${id}`
 
     fetch(url, {
-      method: 'PUT', // Especifica que esta é uma requisição PUT
+      method: 'PUT', 
       headers: {
-        'Content-Type': 'application/json' // Indica que o corpo da requisição será JSON
+        'Content-Type': 'application/json' 
       },
       body: JSON.stringify({
         name,

@@ -14,8 +14,13 @@ export default function ProductDetails({ route }) {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const apiURL = `http://10.88.200.157:4000/products/${id}`;
-  const apiURL2 = `http://10.88.200.157:4000/products`;
+  const apiURL = `http://192.168.15.111:4000/products/${id}`;
+  const apiURL2 = "http://192.168.15.111:4000/products";
+
+  // const apiURL = `http://10.88.200.157:4000/products/${id}`;
+  // const apiURL2 = `http://10.88.200.157:4000/products`;
+
+
   // const apiURL = `http://10.88.194.76:4000/products/${id}`;
   // const apiURL2 = `http://10.88.194.76:4000/products`;
 
@@ -72,7 +77,6 @@ export default function ProductDetails({ route }) {
         <View style={styles.Containerproduct}>
           <View key={product.id} style={styles.product}>
           <Image style={styles.logo} source={{ uri: product.photo }} />
-            {/* <Text style={styles.texto}>{product.name}</Text> */}
             <Text style={styles.texto}>{product.name + "- " + product.description}</Text>
             <Text style={styles.preco}>R$ {product.price}</Text>
             <TouchableOpacity style={styles.botao}><Text style={styles.textoBotao}>+ Adicione ao carrinho</Text></TouchableOpacity>
@@ -82,7 +86,7 @@ export default function ProductDetails({ route }) {
         <Text style={styles.loading}>Carregando...</Text>
       )}
       
-      <View style={styles.containerCards}>
+      {/* <View style={styles.containerCards}>
               <TouchableOpacity><Text style={styles.navegacaoCard}>Mais Produtos...</Text></TouchableOpacity>
 
           
@@ -99,7 +103,7 @@ export default function ProductDetails({ route }) {
         ) : (
           <Text style={styles.loading}>Carregando...</Text>
         )}
-            </View>
+            </View> */}
     </View>
     </ScrollView>
   );
