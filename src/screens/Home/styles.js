@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 30,
   },
   viewSearch: {
     display: "flex",
@@ -20,10 +19,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   logo: {
-    width: 130,
-    height: 130,
+    width: 150,
+    height: 150,
     borderRadius: 100,
-    margin: 5,
   },
   containerCategorys: {
   },
@@ -78,6 +76,36 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10
   },
+  containerCategoryAndMore: {
+  display: "flex",
+  flexDirection: "row",
+  },
+  containerMoreProducts: {
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginLeft: 220
+  },
+  containerMoreProductsAcougue: {
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginLeft: 215
+  },
+  containerMoreProductsHortiFruit: {
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginLeft: 190
+  },
+  containerMoreandIcon: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  textMoreProducts: {
+    color: "#103778",
+    fontWeight: "400",
+    fontSize: 15
+  },
   textPadaria: {
     color: "#103778",
     fontWeight: "bold",
@@ -116,18 +144,12 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   productPrice: {
-    color: "#F58614",
-    textAlign: "center",
-    fontSize: 17,
-    fontWeight: "bold",
-    margin: 5
-  },
-  textDetalhes: {
     color: "white",
-    fontWeight: "500",
-    fontSize: 14,
-    textAlign: "center"
-  }
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    margin: 5,
+  },
 });
 
 export default styles;
