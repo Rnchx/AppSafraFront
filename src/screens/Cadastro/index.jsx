@@ -99,9 +99,9 @@ export default function Register({ route }) {
     if (edit) {
       setNome(produtos.name);
       setPreco(produtos.price);
+      setDescricao(produtos.description);
       setTipo(produtos.type);
       setValidade(produtos.validity);
-      setDescricao(produtos.description);
       setFoto(produtos.photo);
       setCategorias(produtos.idCategory);
       setIsUpdate(true);
@@ -114,7 +114,7 @@ export default function Register({ route }) {
   const handleProductAction = () => {
     if (isUpdate) {
       productRepository.updateInDatabase(produtos.id, {
-        name, price, type, validity, description, photo, idCategory
+        name, price, description, type, validity, photo, idCategory
       }).then(() => {
         clearInputs();
         handleShowPopup(null, 'Produto atualizado com sucesso', 'success', 3000);
@@ -122,8 +122,8 @@ export default function Register({ route }) {
         console.error('Erro ao atualizar produto:', error);
       });
     } else {
-      const newProduct = new Product(name, price, type, validity, description, photo, idCategory);
-      //console.log("Produto", newProduct);
+      const newProduct = new Product(name, price, description, type, validity, photo, idCategory);
+      console.log("Produto", newProduct);
       try {
         productRepository.saveToDatabase(newProduct)
         clearInputs();

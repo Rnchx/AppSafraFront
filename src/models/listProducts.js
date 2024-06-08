@@ -6,6 +6,7 @@ class productRepository {
   }
 
   saveToDatabase(product) {
+    console.log(product);
     // fetch('http://10.88.200.157:4000/products', {
       fetch('http://192.168.15.111:4000/products', {
       method: 'POST',
@@ -16,6 +17,7 @@ class productRepository {
     })
       .then(response => {
         console.log('Status Code:', response.status);
+        console.log(response.body);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -31,7 +33,7 @@ class productRepository {
   }
 
 
-  updateInDatabase(name, price, type, validity, description, photo, idCategory) {
+  updateInDatabase(name, price, description, type, validity, photo, idCategory) {
     // const url = `http://10.88.200.157:4000/products/${id}`;
     const url = `http://192.168.15.111:4000/products/${id}`
 
@@ -43,9 +45,9 @@ class productRepository {
       body: JSON.stringify({
         name,
         price,
+        description,
         type,
         validity,
-        description,
         photo,
         idCategory
       })
@@ -62,9 +64,9 @@ class productRepository {
         if (index > -1) {
           this.products[index].name = name;
           this.products[index].price = price;
+          this.products[index].description = description;
           this.products[index].type = type;
           this.products[index].validity = validity;
-          this.products[index].description = description;
           this.products[index].photo = photo;
           this.products[index].idCategory = idCategory;
         }
@@ -88,7 +90,7 @@ class productRepository {
 }
 
 const ProductRepository = new productRepository();
-const newProduct = new Product(Product.name, Product.price, Product.type, Product.validity, Product.description, Product.photo, Product.idCategory);
+const newProduct = new Product(Product.name, Product.price, Product.description, Product.type, Product.validity, Product.photo, Product.idCategory);
 
 ProductRepository.saveToDatabase(newProduct);
 
