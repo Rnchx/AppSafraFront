@@ -59,7 +59,6 @@ export default function CategoryProducts({ route }) {
     setLoading(true);
     fetchCategorie();
     fetchCategoryFilter();
-    // Limpar o filtro de tipo quando a categoria for alterada
     setSelectedType(null);
   }, [id]);
 
@@ -67,7 +66,7 @@ export default function CategoryProducts({ route }) {
     if (selectedType) {
       fetchFilterProductsType(selectedType);
     } else {
-      setFilterProductsType([]);  // Reset filter when no type is selected
+      setFilterProductsType([]); 
     }
   }, [selectedType]);
 
@@ -144,7 +143,7 @@ export default function CategoryProducts({ route }) {
                 <View key={product.id} style={styles.product}>
                   <TouchableOpacity
                     style={styles.button}
-                    onPress={() => navigation.navigate("ProductDetails", { id: product.id })}
+                    onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}
                   >
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>

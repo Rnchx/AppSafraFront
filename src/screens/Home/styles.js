@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   productPrice: {
-    color: "white",
+    color: "#F58614",
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",

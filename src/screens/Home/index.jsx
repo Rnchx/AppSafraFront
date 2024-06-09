@@ -7,6 +7,7 @@ import axios from "axios";
 import styles from "./styles";
 import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -42,15 +43,15 @@ export default function Home() {
   const getIcon = (categoryName) => {
     switch (categoryName) {
       case 'Padaria':
-        return <MaterialCommunityIcons name="cupcake" size={40} color="#103778" />;
+        return <FontAwesome name="coffee" size={40} color="#103778" />
       case 'Açougue':
-        return <MaterialCommunityIcons name="knife" size={40} color="#103778" />
+        return <MaterialCommunityIcons name="food-drumstick" size={40} color="#103778" />
       case 'Horti-Fruit':
-        return <FontAwesome name="leaf" size={40} color="#103778" />;
+        return <MaterialCommunityIcons name="fruit-cherries" size={40} color="#103778" />
       case 'Bebidas':
-        return <FontAwesome name="glass" size={40} color="#103778" />;
+        return <FontAwesome5 name="glass-cheers" size={40} color="#103778" />
       case 'Limpeza':
-        return <MaterialIcons name="cleaning-services" size={40} color="#103778" />
+        return <MaterialIcons name="clean-hands" size={40} color="#103778" />
       default:
         return null;
     }
@@ -151,6 +152,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.containerProductsDestaques}>
       <View style={styles.viewSearchLogo}>
 
         <View style={styles.viewLogo}>
@@ -184,7 +186,6 @@ export default function Home() {
       </View>
 
 
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.containerProductsDestaques}>
         <View style={styles.viewTextDestaques}>
           <Text style={styles.textDestaques}>Destaques</Text>
         </View>
@@ -199,7 +200,7 @@ export default function Home() {
                     {category.name === "Padaria" && (
                       <TouchableOpacity
                         style={styles.button}
-                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id })}
+                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id, name: category.name })}
                       >
                         <View style={styles.containerMoreandIcon}>
                         <Text style={styles.textMoreProducts}>Mais</Text>
@@ -219,7 +220,7 @@ export default function Home() {
             <View style={styles.viewProductDestaques}>
               {filterPadaria.slice(0, 6).map((product) => (
                 <View key={product.id} style={styles.product}>
-                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>          
                     <Text style={styles.productPrice}>R$ {product.price}</Text>
@@ -246,7 +247,7 @@ export default function Home() {
                     {category.name === "Açougue" && (
                       <TouchableOpacity
                         style={styles.button}
-                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id })}
+                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id, name: category.name })}
                       >
                         <View style={styles.containerMoreandIcon}>
                         <Text style={styles.textMoreProducts}>Mais</Text>
@@ -262,12 +263,12 @@ export default function Home() {
             )}
           </View>
           
-          <ScrollView showsVerticalScrollIndicator={false} horizontal>
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {filterAcougue ? (
             <View style={styles.viewProductDestaques}>
               {filterAcougue.slice(0, 6).map((product) => (
                 <View key={product.id} style={styles.product}>
-                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>
                     <Text style={styles.productPrice}>{product.price}</Text>
@@ -294,7 +295,7 @@ export default function Home() {
                     {category.name === "Horti-Fruit" && (
                       <TouchableOpacity
                         style={styles.button}
-                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id })}
+                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id, name: category.name })}
                       >
                         <View style={styles.containerMoreandIcon}>
                         <Text style={styles.textMoreProducts}>Mais</Text>
@@ -310,12 +311,12 @@ export default function Home() {
             )}
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false} horizontal>
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {filterHortiFruit ? (
             <View style={styles.viewProductDestaques}>
               {filterHortiFruit.slice(0, 6).map((product) => (
                 <View key={product.id} style={styles.product}>
-                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>
                     <Text style={styles.productPrice}>{product.price}</Text>
@@ -342,7 +343,7 @@ export default function Home() {
                     {category.name === "Bebidas" && (
                       <TouchableOpacity
                         style={styles.button}
-                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id })}
+                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id, name: category.name })}
                       >
                         <View style={styles.containerMoreandIcon}>
                         <Text style={styles.textMoreProducts}>Mais</Text>
@@ -358,12 +359,12 @@ export default function Home() {
             )}
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false} horizontal>
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {filterBebidas ? (
             <View style={styles.viewProductDestaques}>
               {filterBebidas.slice(0, 6).map((product) => (
                 <View key={product.id} style={styles.product}>
-                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>
                     <Text style={styles.productPrice}>{product.price}</Text>
@@ -390,7 +391,7 @@ export default function Home() {
                     {category.name === "Limpeza" && (
                       <TouchableOpacity
                         style={styles.button}
-                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id })}
+                        onPress={() => navigation.navigate("CategoryProducts", { id: category.id, name: category.name })}
                       >
                         <View style={styles.containerMoreandIcon}>
                         <Text style={styles.textMoreProducts}>Mais</Text>
@@ -406,12 +407,12 @@ export default function Home() {
             )}
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false} horizontal>
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {filterLimpeza ? (
             <View style={styles.viewProductDestaques}>
               {filterLimpeza.slice(0, 6).map((product) => (
                 <View key={product.id} style={styles.product}>
-                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id })}>
+                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>
                     <Text style={styles.productPrice}>{product.price}</Text>

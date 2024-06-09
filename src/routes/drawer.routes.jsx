@@ -1,6 +1,8 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+
 
 import Home from "../screens/Home";
 import ProductDetails from "../screens/Detalhamento";
@@ -22,13 +24,19 @@ const DrawerRoutes = () => {
             <Feather
               name="home"
               size={24}
-              color={focused ? "#103778" : "gray"}
+              color={focused ? "white" : "gray"}
             />
           ),
           headerStyle: { backgroundColor: "#10377B" },
           drawerLabel: "Início",
-          drawerActiveTintColor: "#103778",
+          drawerActiveTintColor: "white",
           drawerInactiveTintColor: "gray",
+          drawerActiveBackgroundColor: "#F58614",
+          drawerType: "slide",
+          drawerStyle: {
+            backgroundColor: '#103778',
+             width: '60%' 
+            },
         }}
       />
       <Drawer.Screen
@@ -45,8 +53,14 @@ const DrawerRoutes = () => {
             />
           ),
           drawerBarLabel: "Perfil",
-          drawerBarActiveTintColor: "#131313",
-          drawerBarInactiveTintColor: "#D6D6D6",
+          drawerActiveTintColor: "white",
+          drawerInactiveTintColor: "gray",
+          drawerActiveBackgroundColor: "#F58614",
+          drawerType: "slide",
+          drawerStyle: {
+            backgroundColor: '#103778',
+             width: '60%' 
+            },
         }}
       />
       <Drawer.Screen
@@ -64,8 +78,14 @@ const DrawerRoutes = () => {
           ),
           headerStyle: { backgroundColor: "#10377B" },
           drawerLabel: "Categorias",
-          drawerActiveTintColor: "#131313",
-          drawerInactiveTintColor: "#D6D6D6",
+          drawerActiveTintColor: "white",
+          drawerInactiveTintColor: "gray",
+          drawerActiveBackgroundColor: "#F58614",
+          drawerType: "slide",
+          drawerStyle: {
+            backgroundColor: '#103778',
+             width: '60%' 
+            },
         }}
       />
 
@@ -73,18 +93,20 @@ const DrawerRoutes = () => {
         name="ShopCart"
         component={ShopCart}
         options={{
-          drawerItemStyle: { display: "none" },
-          drawerBarIcon: ({ focused }) => (
-            <Feather
-              name="users"
-              size={24}
-              color={focused ? "#131313" : "#D6D6D6"}
-            />
+          headerTitle: "",
+          drawerIcon: ({ focused }) => (
+            <Feather name="shopping-cart" size={24} color={focused ? "white" : "gray"} />
           ),
           headerStyle: { backgroundColor: "#10377B" },
-          drawerBarLabel: "Produtos",
-          drawerBarActiveTintColor: "#131313",
-          drawerBarInactiveTintColor: "#D6D6D6",
+          drawerLabel: "Carrinho",
+          drawerActiveTintColor: "white",
+          drawerInactiveTintColor: "gray",
+          drawerActiveBackgroundColor: "#F58614",
+          drawerType: "slide",
+          drawerStyle: {
+            backgroundColor: '#103778',
+             width: '60%' 
+            },
         }}
       />
 
@@ -92,6 +114,7 @@ const DrawerRoutes = () => {
         name="Register"
         component={Register}
         options={{
+          drawerItemStyle: { display: "none" },
           headerTitle: "",
           drawerIcon: ({ focused }) => (
             <FontAwesome5 name="newspaper" size={24} color={focused ? "#103778" : "gray"} />
