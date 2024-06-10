@@ -10,6 +10,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 export default function Home() {
 
@@ -35,7 +36,7 @@ export default function Home() {
   const apiURL = "http://192.168.15.111:4000/products";
   const apiUrl2 = "http://192.168.15.111:4000/categorys"
   const apiURLPadaria = "http://192.168.15.111:4000/categorys/filter/Padaria"
-  const apiURLAcougue = "http://192.168.15.111:4000/categorys/filter/Açougue"
+  const apiURLAcougue = "http://192.168.15.111:4000/categorys/filter/Acougue"
   const apiURLHortiFruit = "http://192.168.15.111:4000/categorys/filter/Horti-Fruit"
   const apiURLBebidas = "http://192.168.15.111:4000/categorys/filter/Bebidas"
   const apiURLLimpeza = "http://192.168.15.111:4000/categorys/filter/Limpeza"
@@ -44,7 +45,7 @@ export default function Home() {
     switch (categoryName) {
       case 'Padaria':
         return <FontAwesome name="coffee" size={40} color="#103778" />
-      case 'Açougue':
+      case 'Acougue':
         return <MaterialCommunityIcons name="food-drumstick" size={40} color="#103778" />
       case 'Horti-Fruit':
         return <MaterialCommunityIcons name="fruit-cherries" size={40} color="#103778" />
@@ -154,7 +155,6 @@ export default function Home() {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.containerProductsDestaques}>
       <View style={styles.viewSearchLogo}>
-
         <View style={styles.viewLogo}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Home")}>
             <Image style={styles.logo} source={require("../../../assets/logo.png")} />
@@ -188,6 +188,11 @@ export default function Home() {
 
         <View style={styles.viewTextDestaques}>
           <Text style={styles.textDestaques}>Destaques</Text>
+
+          <TouchableOpacity style={styles.buttonContainerCart} onPress={() => navigation.navigate("ShopCart")}>
+      <Text style={styles.textContainerCart}>Ir para o carrinho</Text>
+          </TouchableOpacity>
+          
         </View>
         <View style={styles.viewDestaques}>
           <View style={styles.containerCategoryAndMore}>
@@ -244,7 +249,7 @@ export default function Home() {
               <View style={styles.containerMoreProductsAcougue}>
                 {categories.map((category) => (
                   <View key={category.id}>
-                    {category.name === "Açougue" && (
+                    {category.name === "Acougue" && (
                       <TouchableOpacity
                         style={styles.button}
                         onPress={() => navigation.navigate("CategoryProducts", { id: category.id, name: category.name })}
@@ -266,7 +271,7 @@ export default function Home() {
           <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {filterAcougue ? (
             <View style={styles.viewProductDestaques}>
-              {filterAcougue.slice(0, 6).map((product) => (
+              {filterAcougue.slice(12, 18).map((product) => (
                 <View key={product.id} style={styles.product}>
                   <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
@@ -362,7 +367,7 @@ export default function Home() {
           <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {filterBebidas ? (
             <View style={styles.viewProductDestaques}>
-              {filterBebidas.slice(0, 6).map((product) => (
+              {filterBebidas.slice(8, 14).map((product) => (
                 <View key={product.id} style={styles.product}>
                   <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />

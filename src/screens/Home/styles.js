@@ -59,8 +59,27 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 5,
   },
+  containerCart:{
+    display: "flex",
+    marginTop: 20,
+    marginLeft: 20
+  },
+  buttonContainerCart:{
+    backgroundColor: "#F58614",
+    width: 110,
+    borderRadius: 5,
+    padding: 4
+  },
+  textContainerCart:{
+    color: "white",
+  },
   viewTextDestaques: {
-    marginTop: 20
+    marginTop: 20,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 155
   },
   textDestaques: {
     fontWeight: "bold",

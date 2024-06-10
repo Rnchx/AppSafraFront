@@ -4,12 +4,17 @@ import axios from "axios";
 
 import styles from "./styles";
 import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 
 import { useNavigation } from "@react-navigation/native";
+
+import { useCart } from "../../components/Cart";
 
 export default function ProductDetails({ route }) {
   const { id } = route.params;
   const { idcategory } = route.params;
+
+  const { addToCart, getQuantityProducts } = useCart();
 
   const navigation = useNavigation();
 
@@ -17,6 +22,7 @@ export default function ProductDetails({ route }) {
   const [filterProductByidCategory, setfilterProductByidCategory] = useState(null);
   const [categories, setCategories] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [quantityProductsInCart, setQuantityProductsInCart] = useState(0);
 
   const apiURL = `http://192.168.15.111:4000/products/${id}`;
   const apiURL2 = `http://192.168.15.111:4000/products/idcategory/${idcategory}`;
@@ -71,6 +77,15 @@ export default function ProductDetails({ route }) {
     fetchCategorie();
   }, []);
 
+  useEffect(() => {
+    const quantity = getQuantityProducts();
+    setQuantityProductsInCart(quantity);
+  }, [getQuantityProducts]);
+
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -98,8 +113,23 @@ export default function ProductDetails({ route }) {
                 <Text style={styles.preco}>R$ {product.price}</Text>
               </View>
               <View style={styles.containerButtonAddShopCart}>
-                <TouchableOpacity style={styles.buttonAddCart}>
+                <TouchableOpacity style={styles.buttonAddCart} onPress={handleAddToCart}>
                   <Text style={styles.textbuttonAddCart}>+ Adicione ao carrinho</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.buttonPageCart} onPress={() => navigation.navigate("ShopCart")}>
+                  {quantityProductsInCart === 0 ? (
+                    <></>
+                  ) : (
+                    <View style={styles.containerQuatityProductsInCart}>
+                      <Text style={styles.quatityProductsInCart}>
+                        {quantityProductsInCart}
+                      </Text>
+                    </View>
+                  )
+                  }
+
+                  <FontAwesome6 name="cart-shopping" size={27} color="#F58614" />
                 </TouchableOpacity>
               </View>
             </View>
@@ -128,17 +158,15 @@ export default function ProductDetails({ route }) {
           {filterProductByidCategory ? (
             <View style={styles.containerProducts}>
               <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                {filterProductByidCategory.slice(1, 5).map((product) => (
+                {filterProductByidCategory.slice(6, 10).map((product) => (
                   <View key={product.id} style={styles.containerProductsItens}>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
-                      <View style={styles.containerPhotoProducts}>
-                        <Image style={styles.productPhoto} source={{ uri: product.photo }} />
-                      </View>
-                      <Text style={styles.productName}>{product.name}</Text>
-                      <Text style={styles.productPrice}>R$ {product.price}</Text>
-                    </TouchableOpacity>
+                    <View style={styles.containerPhotoProducts}>
+                      <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                    </View>
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productPrice}>R$ {product.price}</Text>
                     <View style={styles.containerButtonBuyProduct}>
-                      <TouchableOpacity style={styles.buttonBuyProduct}>
+                      <TouchableOpacity style={styles.buttonBuyProduct} onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
                         <Text style={styles.textButtonBuyProduct}>Comprar</Text>
                       </TouchableOpacity>
                     </View>

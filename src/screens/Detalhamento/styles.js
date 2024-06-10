@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
 
   containerButtonAddShopCart: {
     display: "flex",
+    flexDirection: "row",
+    gap: 20,
     alignItems: "center",
     justifyContent: "center",
-    shadowOffset: {width: 3,height: 3},
-    shadowOpacity: 0.3,
     marginTop: 20
   },
 
@@ -61,6 +61,30 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     width: 300,
+    shadowOffset: {width: 3,height: 3},
+    shadowOpacity: 0.3,
+  },
+
+  buttonPageCart: {
+    padding: 10,
+    borderRadius: "100%",
+    shadowOffset: {width: 2,height: 3},
+    shadowOpacity: 0.3,
+  },
+
+  containerQuatityProductsInCart: {
+    width: 15,
+    backgroundColor: "red",
+    marginLeft: 20,
+    padding: 2,
+    borderRadius: 10,
+    top: 5,
+    zIndex: 1
+  },
+
+  quatityProductsInCart: {
+    color: "white",
+    textAlign: "center"
   },
 
   textbuttonAddCart: {
@@ -149,7 +173,7 @@ const styles = StyleSheet.create({
   },
 
   productPrice: {
-    color: "white",
+    color: "#F58614",
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",
