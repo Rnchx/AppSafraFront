@@ -12,7 +12,29 @@ const styles = StyleSheet.create({
     height: 350,
   },
 
-  containerMessageAddSomethingInCart:{ 
+  containerButtonBack: {
+    display: "flex",
+    alignItems: "flex-end",
+    marginTop: 8,
+    marginRight: 8
+  },
+
+  buttonContinueBuy: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "#F58614",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    padding: 4,
+    borderRadius: 6
+  },
+
+  textContContinueBuy: {
+    color: "white"
+  },
+
+  containerMessageAddSomethingInCart: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -93,7 +115,7 @@ const styles = StyleSheet.create({
   },
 
   containerButtonAddMoreProduct: {
-    
+
   },
 
   containerButtonRemoveProduct: {
@@ -117,7 +139,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     justifyContent: "center",
-     alignItems: "center"
+    alignItems: "center"
   },
 
   textbuttonAddMoreProduct: {
@@ -125,7 +147,7 @@ const styles = StyleSheet.create({
   },
 
   textbuttonRemoveProduct: {
-  color: "white",
+    color: "white",
   },
 
   containertextProductQuantity: {
@@ -136,6 +158,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#10377833",
     width: 25,
     height: 25,
+    borderRadius: 2
   },
 
   textProductQuantity: {

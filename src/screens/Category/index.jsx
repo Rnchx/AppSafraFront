@@ -17,9 +17,9 @@ export default function CategoryProducts({ route }) {
   const [loading, setLoading] = useState(true);
   const [selectedType, setSelectedType] = useState(null);
 
-  const apiURL2 = `http://192.168.15.111:4000/categorys/${id}`;
-  const apiURLFilterCategoryProducts = `http://192.168.15.111:4000/categorys/filter/${name}`;
-  const apiURLFilterProductsType = `http://192.168.15.111:4000/products/type/`;
+  const apiURL2 = `http://10.88.200.157:4000/categorys/${id}`;
+  const apiURLFilterCategoryProducts = `http://10.88.200.157:4000/categorys/filter/${name}`;
+  const apiURLFilterProductsType = `http://10.88.200.157:4000/products/type/`;
 
   const fetchCategorie = async () => {
     try {
@@ -66,7 +66,7 @@ export default function CategoryProducts({ route }) {
     if (selectedType) {
       fetchFilterProductsType(selectedType);
     } else {
-      setFilterProductsType([]); 
+      setFilterProductsType([]);
     }
   }, [selectedType]);
 
@@ -105,21 +105,21 @@ export default function CategoryProducts({ route }) {
         <View style={styles.containerTypeProducts}>
           {products.length ? (
             <View style={styles.viewTypeProducts}>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={[
-                  styles.buttonType, 
-                  selectedType === null && { backgroundColor: "#103778" } // Aplica a cor de fundo e texto se nenhum tipo estiver selecionado
+                  styles.buttonType,
+                  selectedType === null && { backgroundColor: "#103778" }
                 ]}
-                onPress={() => setSelectedType(null)} // Botão para mostrar todos os produtos
+                onPress={() => setSelectedType(null)}
               >
                 <Text style={[styles.textType, selectedType === null && { color: "white" }]}>Todos</Text>
               </TouchableOpacity>
               {uniqueTypes.map((type, index) => (
-                <TouchableOpacity 
-                  key={index} 
+                <TouchableOpacity
+                  key={index}
                   style={[
                     styles.buttonType,
-                    selectedType === type && { backgroundColor: "#103778" } // Aplica a cor de fundo e texto se o tipo estiver selecionado
+                    selectedType === type && { backgroundColor: "#103778" }
                   ]}
                   onPress={() => setSelectedType(type)}
                 >
@@ -147,7 +147,7 @@ export default function CategoryProducts({ route }) {
                   >
                     <Image style={styles.productPhoto} source={{ uri: product.photo }} />
                     <Text style={styles.productName}>{product.name}</Text>
-                    <Text style={styles.productPrice}>{product.price}</Text>
+                    <Text style={styles.productPrice}>R$ {product.price}</Text>
                   </TouchableOpacity>
                 </View>
               ))}

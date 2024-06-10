@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   containerPhotoProduct: {
     display: "flex",
     alignItems: "center",
-    },
+  },
 
   containerproduct: {
     margin: 20
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 
-  texto:{
+  texto: {
     fontSize: 20,
     margin: 2
   },
@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     width: 300,
-    shadowOffset: {width: 3,height: 3},
+    shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.3,
   },
 
   buttonPageCart: {
     padding: 10,
     borderRadius: "100%",
-    shadowOffset: {width: 2,height: 3},
+    shadowOffset: { width: 2, height: 3 },
     shadowOpacity: 0.3,
   },
 
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   },
 
   productPrice: {
-    color: "#F58614",
+    color: "white",
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",

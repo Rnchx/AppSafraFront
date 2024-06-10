@@ -24,9 +24,9 @@ export default function ProductDetails({ route }) {
   const [loading, setLoading] = useState(true);
   const [quantityProductsInCart, setQuantityProductsInCart] = useState(0);
 
-  const apiURL = `http://192.168.15.111:4000/products/${id}`;
-  const apiURL2 = `http://192.168.15.111:4000/products/idcategory/${idcategory}`;
-  const apiURL3 = "http://192.168.15.111:4000/categorys";
+  const apiURL = `http://10.88.200.157:4000/products/${id}`;
+  const apiURL2 = `http://10.88.200.157:4000/products/idcategory/${idcategory}`;
+  const apiURL3 = "http://10.88.200.157:4000/categorys";
 
   const fetchProduct = async () => {
     try {
@@ -161,7 +161,9 @@ export default function ProductDetails({ route }) {
                 {filterProductByidCategory.slice(6, 10).map((product) => (
                   <View key={product.id} style={styles.containerProductsItens}>
                     <View style={styles.containerPhotoProducts}>
-                      <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                      <TouchableOpacity onPress={() => navigation.navigate("ProductDetails", { id: product.id, idcategory: product.idcategory })}>
+                        <Image style={styles.productPhoto} source={{ uri: product.photo }} />
+                      </TouchableOpacity>
                     </View>
                     <Text style={styles.productName}>{product.name}</Text>
                     <Text style={styles.productPrice}>R$ {product.price}</Text>

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   containerCategorys: {
   },
   containerProductsDestaques: {
-   marginTop: 10
+    marginTop: 10
   },
   viewTextDestaques: {
     marginTop: 30,
@@ -58,19 +58,20 @@ const styles = StyleSheet.create({
   nameCategory: {
     textAlign: "center",
     margin: 5,
+    color: "#103778"
   },
-  containerCart:{
+  containerCart: {
     display: "flex",
     marginTop: 20,
     marginLeft: 20
   },
-  buttonContainerCart:{
+  buttonContainerCart: {
     backgroundColor: "#F58614",
     width: 110,
     borderRadius: 5,
     padding: 4
   },
-  textContainerCart:{
+  textContainerCart: {
     color: "white",
   },
   viewTextDestaques: {
@@ -96,8 +97,8 @@ const styles = StyleSheet.create({
     padding: 10
   },
   containerCategoryAndMore: {
-  display: "flex",
-  flexDirection: "row",
+    display: "flex",
+    flexDirection: "row",
   },
   containerMoreProducts: {
     justifyContent: "flex-end",
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   productPrice: {
-    color: "#F58614",
+    color: "white",
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",

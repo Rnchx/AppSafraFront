@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
     color: "#103778",
   },
 
-  containerTypeProducts:{
+  containerTypeProducts: {
     minHeight: 45,
     margin: 10,
     marginTop: 15
   },
 
   viewTypeProducts: {
-  display: "flex",
+    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     width: '30%',
     marginBottom: 10,
   },
-  
+
   textCategory: {
     fontWeight: "bold",
     color: "#103778",
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
 
   productPrice: {
-    color: "#F58614",
+    color: "white",
     textAlign: "center",
     fontSize: 17,
     fontWeight: "bold",
