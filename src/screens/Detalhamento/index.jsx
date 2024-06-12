@@ -14,7 +14,7 @@ export default function ProductDetails({ route }) {
   const { id } = route.params;
   const { idcategory } = route.params;
 
-  const { addToCart, getQuantityProducts } = useCart();
+  const { addToCart, getQuantityProducts, verifyExistProductInCart } = useCart();
 
   const navigation = useNavigation();
 
@@ -83,6 +83,7 @@ export default function ProductDetails({ route }) {
   }, [getQuantityProducts]);
 
   const handleAddToCart = () => {
+    // verifyExistProductInCart(product);
     addToCart(product);
   };
 

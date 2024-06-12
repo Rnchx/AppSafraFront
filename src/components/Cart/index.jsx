@@ -12,14 +12,21 @@ export const Cart = ({ children }) => {
     return cart.length;
   }
 
+  const verifyExistProductInCart = (product) => {
+    const exists = cart.some(item => item.id === product.id);
+    if (exists) {
+      alert("Produto já adicionado ao carrinho");
+    }
+  };
+
   const clearCart = () => {
 
-    if(cart.length === 0) {
+    if (cart.length === 0) {
       alert("Adicione algum produto no carrinho para efetuar a compra");
-    }else {
-    setCart([])
-    alert("Compra realizada com sucesso!");
-  }
+    } else {
+      setCart([])
+      alert("Compra realizada com sucesso!");
+    }
   }
 
   const addToCart = (product) => {
@@ -44,7 +51,7 @@ export const Cart = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeProductFromCart, getQuantityProducts, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeProductFromCart, getQuantityProducts, clearCart, verifyExistProductInCart }}>
       {children}
     </CartContext.Provider>
   );
